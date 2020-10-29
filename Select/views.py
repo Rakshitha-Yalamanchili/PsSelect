@@ -27,8 +27,6 @@ def index(request):
 		ps.append(n)
 	print(ps)
 	return render(request,'index.html',{'probs':ps})
-def default(request):
-	return render(request,'default.html')
 	
 def validate(request):
 	if request.method=='POST':
@@ -38,7 +36,7 @@ def validate(request):
 		if passOrig.password == password:
 			request.session['user']=username
 			return redirect('/home')
-	return render(request,'login.html')
+	return redirect('/')
 	
 	
 def save(request,pid):
