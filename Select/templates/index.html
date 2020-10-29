@@ -27,21 +27,18 @@
   <body>
     <div class="container-bg">
       <div class="rounded bg-white m-5 p-3">
+        {%for prob in probs%}
         <div class="row">
-          <div class="h5 w-50 col-8">1. Placement Management</div>
+          <div class="h5 w-50 col-8">{{prob.num}}. {{prob.name}}</div>
           <div class="btn btn-dumb p-1 col-1 mx-1">0/2</div>
           <div class="btn btn-custom p-1 col-2 mx-1" data-toggle="modal" data-target="#exampleModal" >Select</div>
         </div>
-        <p>
-          Each year tens of thousands of students sit for placements from
-          colleges all over India. Some students miss out on many opportunities.
-          There’s an immediate need for an application which classifies a list
-          of companies that a student is eligible for through their GPA among
-          all the other companies in the placement list, further providing the
-          necessary resources useful for preparation.
+        <p>{{prob.desc}}
         </p>
+	{%endfor%}
       </div>
     </div>
+	
 
     <!-- Modal -->
     <div
