@@ -6,4 +6,5 @@ urlpatterns = [
     path('home', views.index,name='home'),
     path('default',views.default,name='default'),
 	path('validate',views.validate,name='validate'),
+	path('save/<int:pid>',views.save,name='save'),
 ]

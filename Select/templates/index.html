@@ -30,29 +30,24 @@
         {%for prob in probs%}
         <div class="row">
           <div class="h5 w-50 col-8">{{prob.num}}. {{prob.name}}</div>
-          <div class="btn btn-dumb p-1 col-1 mx-1">0/2</div>
-          <div class="btn btn-custom p-1 col-2 mx-1" data-toggle="modal" data-target="#exampleModal" >Select</div>
+          <div class="btn btn-dumb p-1 col-1 mx-1">{{prob.count}}/2</div>
+          <div class="btn btn-custom p-1 col-2 mx-1" onclick="getConf({{prob.num}})" >Select</div>
         </div>
         <p>{{prob.desc}}
         </p>
-	{%endfor%}
-      </div>
-    </div>
-	
-
-    <!-- Modal -->
+		<!-- Modal 
     <div
       class="modal fade"
-      id="exampleModal"
+      id="{{prob.name}}"
       tabindex="-1"
       role="dialog"
-      aria-labelledby="exampleModalLabel"
+      aria-labelledby="conf{{prob.num}}"
       aria-hidden="true"
     >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Confirm Selection</h5>
+            <h5 class="modal-title" id="conf{{prob.num}}">Confirm Selection</h5>
             <button
               type="button"
               class="close"
@@ -62,7 +57,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">Are you sure you want to select Problem Statement 1?<br/> After this theres no going back.</div>
+          <div class="modal-body">Are you sure you want to select this Problem Statement ?<br/> After this theres no going back.</div>
           <div class="modal-footer">
             <button
               type="button"
@@ -71,16 +66,23 @@
             >
               Close
             </button>
-            <button type="button" class="btn btn-primary" onclick="select()" 
+            <button type="button" class="btn btn-primary" onclick="{%url 'save' prob.num %}" 
             data-dismiss="modal">Yes, Confirm</button>
           </div>
         </div>
       </div>
+    </div>-->
+	{%endfor%}
+      </div>
     </div>
-    <script>
-        function select(){
-            console.log("Yess")
-        }
-    </script>
+	<script>
+	function getConf(ps){
+	if (confirm('Are you sure you want to select problem number '+ps+' ?')){
+	window.location.href='save/'+ps;
+	}
+	}
+	</script>
+
+    
   </body>
 </html>
