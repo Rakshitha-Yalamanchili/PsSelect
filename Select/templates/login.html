@@ -32,7 +32,8 @@
 					<img src="{% static 'images/img-01.png' %}" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" method="POST" id="myForm" action="{%url 'login'%}">
+					{% csrf_token %}
 					<span class="login100-form-title">
 						PS Select
 					</span>
@@ -80,6 +81,7 @@
 		$('.js-tilt').tilt({
 			scale: 1.1
 		})
+
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>

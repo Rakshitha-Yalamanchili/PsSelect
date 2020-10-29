@@ -1,28 +1,88 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
-</head>
-<body>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}"
+    />
+  </head>
+  <body>
     <div class="container-bg">
-        <div class="rounded bg-white m-5 p-3">
-            <div class="row">
-                <div class="h5 w-50 col-8">1. Placement Management</div>
-                <div class="btn btn-dumb p-1 col-1 mx-1">0/2</div>
-                <div class="btn btn-custom p-1 col-2 mx-1">Select</div>
-            </div>
-            <p>Each year tens of thousands of students sit for placements from colleges all over India. Some students
-                miss out on many opportunities. There’s an immediate need for an application which classifies a list of
-                companies that a student is eligible for through their GPA among all the other companies in the placement
-                list, further providing the necessary resources useful for preparation.
-            </p>
+      <div class="rounded bg-white m-5 p-3">
+        <div class="row">
+          <div class="h5 w-50 col-8">1. Placement Management</div>
+          <div class="btn btn-dumb p-1 col-1 mx-1">0/2</div>
+          <div class="btn btn-custom p-1 col-2 mx-1" data-toggle="modal" data-target="#exampleModal" >Select</div>
         </div>
+        <p>
+          Each year tens of thousands of students sit for placements from
+          colleges all over India. Some students miss out on many opportunities.
+          There’s an immediate need for an application which classifies a list
+          of companies that a student is eligible for through their GPA among
+          all the other companies in the placement list, further providing the
+          necessary resources useful for preparation.
+        </p>
+      </div>
     </div>
-</body>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Confirm Selection</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">Are you sure you want to select Problem Statement 1?<br/> After this theres no going back.</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary" onclick="select()" 
+            data-dismiss="modal">Yes, Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+        function select(){
+            console.log("Yess")
+        }
+    </script>
+  </body>
 </html>
