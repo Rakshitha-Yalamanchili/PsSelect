@@ -5,3 +5,5 @@ def login(request):
 	return render(request,'login.html')
 def index(request):
 	return render(request,'index.html')
+def default(request):
+	return render(request,'default.html')
