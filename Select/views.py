@@ -53,10 +53,13 @@ def validate(request):
 	if request.method=='POST':
 		username=request.POST['username']
 		password=request.POST['password']
-		passOrig=Team.objects.get(teamNo=username)
-		if passOrig.password == password:
-			request.session['user']=username
-			return redirect('/home')
+		try:
+			passOrig=Team.objects.get(teamNo=username)
+			if passOrig.password == password:
+				request.session['user']=username
+				return redirect('/home')
+		except Exception:
+			return redirect('/')
 	return redirect('/')
 	
 	
