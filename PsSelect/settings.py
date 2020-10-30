@@ -84,10 +84,10 @@ DATABASES = {
 DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.mysql',
-         'NAME': 'PS',
-         'USER':'root',
-         'PASSWORD':'MyNewPass',
-         'HOST':'localhost',
+         'NAME': 'psselect',
+         'USER':'admin',
+         'PASSWORD':'hacktoberfest',
+         'HOST':'cbit-hacktoberfest2020-ps.cxgok3weok8n.ap-south-1.rds.amazonaws.com',
          'PORT':'3306',
      }
 }
