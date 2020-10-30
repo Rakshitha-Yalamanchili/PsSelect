@@ -23,55 +23,27 @@
       type="text/css"
       href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}"
     />
+	
+	
   </head>
   <body>
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.min.js"></script>
+  
     <div class="container-bg">
       <div class="rounded bg-white m-5 p-3">
         {%for prob in probs%}
         <div class="row">
           <div class="h5 w-50 col-8">{{prob.num}}. {{prob.name}}</div>
-          <div class="btn btn-dumb p-1 col-1 mx-1">{{prob.count}}/2</div>
-          <div class="btn btn-custom p-1 col-2 mx-1" onclick="getConf({{prob.num}})" >Select</div>
+          <div class="btn btn-dumb p-1 col-1 mx-1" id="cnt-{{prob.num}}">{{prob.count}}/2</div>
+		  {%if prob.count == 2%}
+		  <div class="btn btn-custom p-1 col-2 mx-1" disabled style="cursor:default;background-color:gray;" id="click-{{prob.num}}">Not available!</div>
+		  {%else %}
+          <div class="btn btn-custom p-1 col-2 mx-1" onclick="getConf({{prob.num}})" id="click-{{prob.num}}" >Select</div>
+		  {%endif%}
         </div>
         <p>{{prob.desc}}
         </p>
-		<!-- Modal 
-    <div
-      class="modal fade"
-      id="{{prob.name}}"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="conf{{prob.num}}"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="conf{{prob.num}}">Confirm Selection</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">Are you sure you want to select this Problem Statement ?<br/> After this theres no going back.</div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary" onclick="{%url 'save' prob.num %}" 
-            data-dismiss="modal">Yes, Confirm</button>
-          </div>
-        </div>
-      </div>
-    </div>-->
+		
 	{%endfor%}
       </div>
     </div>
@@ -81,6 +53,35 @@
 	window.location.href='save/'+ps;
 	}
 	}
+	function worker(){
+	$.ajax({
+    url: '{% url "data"%}', 
+	type: 'GET',
+    success: function(data,textStatus,request) {
+	  for(i=0;i<data.length;i++){
+		document.getElementById("cnt-"+data[i]['num']).innerHTML=data[i]['count'] +"/2";
+		if( data[i]['count']==2){
+		document.getElementById("click-"+data[i]['num']).innerHTML="Not available!";
+		document.getElementById("click-"+data[i]['num']).style.cursor="default";
+		document.getElementById("click-"+data[i]['num']).style.backgroundColor="gray";
+		document.getElementById("click-"+data[i]['num']).disabled=true;
+		document.getElementById("click-"+data[i]['num']).onclick="";
+		}
+		else{
+		document.getElementById("click-"+data[i]['num']).innerHTML="Select";
+		document.getElementById("click-"+data[i]['num']).style.cursor="pointer";
+		document.getElementById("click-"+data[i]['num']).className="btn btn-custom p-1 col-2 mx-1";
+		document.getElementById("click-"+data[i]['num']).disabled=false;
+		}
+	  }
+    },
+    complete: function() {
+      // Schedule the next request when the current one's complete
+      setTimeout(worker, 5000);
+    }
+  });
+	}
+	worker();
 	</script>
 
     
