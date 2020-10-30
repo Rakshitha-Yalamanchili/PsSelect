@@ -1,1 +1,1 @@
-web: gunicorn app:manage.py runserver
+web: gunicorn django_project.wsgi
